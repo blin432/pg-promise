@@ -33,21 +33,14 @@ var name="";
 const question1 = () => {
     return new Promise((resolve, reject) => {
       rl.question('Artist name ?', (answer) => {
-  
         name=answer;
-  
         var query=`INSERT INTO artist ("name") \
         VALUES ('${name}')`;
-  
-      
-  
-        db.result(query).then(function(){
-          db.query(`SELECT id FROM artist WHERE name='${name}'`).then(function(column) {
-          console.log("Created artist with ID "  + column[0].id );
-        });
-        });
-        
-        
+            db.result(query).then(function(){
+            db.query(`SELECT id FROM artist WHERE name='${name}'`).then(function(column) {
+            console.log("Created artist with ID "  + column[0].id );
+            });
+            });
         resolve()
       })
     });

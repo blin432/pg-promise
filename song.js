@@ -51,21 +51,14 @@ const question2 = () => {
 const question3 = () => {
   return new Promise((resolve, reject) => {
     rl.question('Song Length ?', (answer) => {
-
       length=answer;
-
       var query=`INSERT INTO song ("name","songwriter_id","duration") \
       VALUES ('${name}','${albumID}','${length}')`;
-
-    
-
-      db.result(query).then(function(){
-        db.many(`SELECT * FROM song WHERE name='${name}'`).then(function(column) {
-        console.log("Created album with ID "  + column[0].id );
-      });
-      });
-      
-      
+        db.result(query).then(function(){
+            db.many(`SELECT * FROM song WHERE name='${name}'`).then(function(column) {
+            console.log("Created album with ID "  + column[0].id );
+        });
+        });
       resolve()
     })
   });

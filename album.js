@@ -51,21 +51,14 @@ const question2 = () => {
 const question3 = () => {
   return new Promise((resolve, reject) => {
     rl.question('Artist ID ?', (answer) => {
-
       artist_id=answer;
-
       var query=`INSERT INTO albums ("name","year","artist_id") \
       VALUES ('${name}','${year}','${artist_id}')`;
-
-    
-
-      db.result(query).then(function(){
-        db.many(`SELECT * FROM albums WHERE name='${name}'`).then(function(column) {
-        console.log("Created album with ID "  + column[0].id );
-      });
-      });
-      
-      
+        db.result(query).then(function(){
+          db.many(`SELECT * FROM albums WHERE name='${name}'`).then(function(column) {
+          console.log("Created album with ID "  + column[0].id );
+        });
+        });
       resolve()
     })
   });
